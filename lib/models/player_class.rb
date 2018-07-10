@@ -5,6 +5,11 @@ class Player < ActiveRecord::Base
     super
   end
 
+
+  def attack
+  	
+  end
+
 has_many :battle
 has_many :enemies, through: :battle
 
