@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
 
   def initialize(args = {})
     args[:health] ||= 100
+    args[:attack] ||= 5
     super
   end
 
@@ -12,7 +13,8 @@ class Player < ActiveRecord::Base
 
   def enter_battle
   	 enemy = get_random_enemy
-  	 player_enemey_battle = Battle.create(player_id: self.id, enemy_id: enemy.id)
+  	 player_enemy_battle = Battle.create(player_id: self.id, enemy_id: enemy.id)
+     player_enemy_battle.battlefield
   end
 
 

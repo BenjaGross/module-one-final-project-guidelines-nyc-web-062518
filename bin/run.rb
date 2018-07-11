@@ -8,26 +8,28 @@ def run_game
   puts "Old Wizard: Welcome to #{fake_region}! Tell me, Young-Adventurer, WHAT is your name!?"
 
   get_name = gets.chomp.to_s.capitalize
-  story_hero = Player.new(:name => get_name)
+  story_hero = Player.new(:name => get_name, :attack => 10)
 
   puts "Old Wizard: Ahhh, so YOU'RE #{story_hero.name}!"
   puts "Old Wizard: And tell me, #{story_hero.name}, what class are you?"
 
-#broken, needs race table to fix
-  get_race = gets.chomp.to_s.capitalize
-  story_hero = :race => get_race)
+  # broken, needs race table to fix
+  # get_race = gets.chomp.to_s.capitalize
+  # story_hero = :race => get_race)
 
   puts "Old Wizard: Ahhhh, a #{story_hero.race}"
   puts "Old Wizard: This land has been overrun by enemies of the Dark Lord. (╬ಠ益ಠ)"
   puts "Old Wizard: Will you help us? (yes or no)"
 
+  # can be refactored to helper method 
+  # so it doesn't start from begining
   answer = gets.chomp
  	if answer == "yes"
  		game_loop
  	elsif answer == "no"
- 		"Old Wizard: That's a shame...goodbye forever."
+ 		puts "Old Wizard: That's a shame...goodbye forever."
  	else
- 		"I'm sorry I don't understand"
+ 		puts "I'm sorry I don't understand"
     run_game
  	end
 
@@ -40,7 +42,6 @@ def game_loop
   	user_command = gets.chomp
   	case user_command
   	when "enter fight"
-  		print "attack!"
   		story_hero.enter_battle
   	when "inventory"
   		#story_hero.inventory
