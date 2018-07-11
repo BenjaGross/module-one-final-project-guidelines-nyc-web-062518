@@ -19,33 +19,42 @@ def run_game
 
   puts "Old Wizard: Ahhhh, a #{story_hero.race}"
   puts "Old Wizard: This land has been overrun by enemies of the Dark Lord. (╬ಠ益ಠ)"
-  puts "Old Wizard: Will you help us? (yes or no)"
+  
+  # puts "Old Wizard: Will you help us? (yes or no)"
 
-  # can be refactored to helper method 
-  # so it doesn't start from begining
-  answer = gets.chomp
- 	if answer == "yes"
- 		game_loop
- 	elsif answer == "no"
- 		puts "Old Wizard: That's a shame...goodbye forever."
- 	else
- 		puts "I'm sorry I don't understand"
-    run_game
- 	end
-
+  # # can be refactored to helper method 
+  # # so it doesn't start from begining
+  # answer = gets.chomp
+ 	# if answer == "yes"
+ 	# 	game_loop
+ 	# elsif answer == "no"
+ 	# 	puts "Old Wizard: That's a shame...goodbye forever."
+ 	# else
+ 	# 	puts "I'm sorry I don't understand"
+  #   run_game
+ 	# end
+  game_loop
 end
+
 
 
 def game_loop
 	game_on = true
   while game_on
+
+    puts "Game Commands:"
+    puts "-------------"
+    puts "enter fight"
+    puts "inventory"
+    puts "exit"
+
   	user_command = gets.chomp
   	case user_command
   	when "enter fight"
   		story_hero.enter_battle
   	when "inventory"
   		#story_hero.inventory
-  		print "invenotry!"
+  		print "inventory!"
   	when "exit"
   		game_on = false
   	end
