@@ -20,6 +20,7 @@ def story_prologue
   story_hero = Player.create(:name => get_name)
   sleep(2)
   puts "Old Wizard: Ahhh, so YOU'RE #{story_hero.name}!"
+  sleep(2)
 
   # puts "Old Wizard: And tell me, #{story_hero.name}, what class are you?"
   # get_race = gets.chomp.to_s.capitalize
@@ -27,34 +28,39 @@ def story_prologue
   # story_hero = :race => get_race)
 
   # puts "Old Wizard: Ahhhh, a #{story_hero.race}"
-  sleep(2)
+
   puts "Old Wizard: This land has been overrun by enemies of the Dark Lord. (╬ಠ益ಠ)"
   sleep(2)
+
   puts "Old Wizard: We need your help!"
   sleep(2)
+
   story_hero
 end
 
 
 def game_loop(hero)
   game_on = true
+  prompt = TTY::Prompt.new
   while game_on
-
-    puts "Available Commands:"
+    puts "Old Wizard: OMG! An wild enemy appears!"
+    # puts "Available Commands:"
     puts "-------------------------------------\n"
-    puts "Fight"
-    puts "Inventory"
-    puts "Run"
+    # puts "Fight"
+    # puts "Inventory"
+    # puts "Run"
+    user_command = prompt.select("Commands:", %w(Fight Inventory Exit))
 
-    user_command = gets.chomp.downcase
+
+    # user_command = gets.chomp.downcase
     case user_command
-    when "fight"
-      # print "The battle has begun!\n\n"
+    when "Fight"
+      print "The battle has begun!\n\n"
       hero.enter_battle
-    when "inventory"
+    when "Inventory"
       #story_hero.inventory
-      print "invenotry!"
-    when "exit"
+      print "Inventory Empty :-("
+    when "Exit"
       game_on = false
     end
 

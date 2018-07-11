@@ -10,7 +10,11 @@ class Player < ActiveRecord::Base
   end
 
   def get_random_enemy
-    Enemy.order("RANDOM()").first(1)[0]
+    # Enemy.order("RANDOM()").first(1)[0]
+    alive_enemy = Enemy.where("health > 0")
+    alive_enemy.order("RANDOM()").first(1)[0]
+    # if alive_enemy.length == 0
+      # win_game
   end
 
 

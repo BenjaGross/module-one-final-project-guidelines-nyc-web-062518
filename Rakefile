@@ -1,6 +1,6 @@
 require_relative 'config/environment'
 require 'sinatra/activerecord/rake'
-ActiveRecord::Base.logger
+# ActiveRecord::Base.logger
 
 desc 'starts a console'
 task :console do

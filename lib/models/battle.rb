@@ -16,44 +16,46 @@ class Battle < ActiveRecord::Base
   #needs a range of attack damage, .sample out of range
   def enter_fight(story_hero, enemy)
     # binding.pry
-    puts "Old Wizard: OMG! An wild enemy appears!"
+    puts "Old Wizard: OMG! A wild enemy appears"
     puts " "
     sleep(2)
+
+    prompt = TTY::Prompt.new
 	  while enemy.health > 0
 
+
 	  	puts "==============BATTLE================="
-	  	puts "Enemy health: #{enemy.health}"
+      puts "Enemy health: #{enemy.health}"
 	  	puts "Player health: #{story_hero.health}"
 	  	puts "====================================="
 	  	puts " "
-	  	sleep(2)
-	  	puts "Battle Commands:"
-	  	puts "attack"
-	  	puts "block"
-	  	puts "run"
-	  	puts " "
-	  	user_input = gets.chomp
-	  	puts " "
-	    case user_input
+      sleep(2)
 
-	    when "attack"
+	  	# puts "Battle Commands:"
+	  	# puts "attack"
+	  	# puts "block"
+	  	# puts "run"
+	  	# user_input = gets.chomp
+      user_command = prompt.select("Commands:", %w(Attack Block Run))
+
+	    case user_command
+
+	    when "Attack"
         attack(story_hero, enemy)
         enemy_attack(story_hero, enemy)
-	    when "block"
+	    when "Block"
 	    	puts "BLOCK!"
 	      	#yield block
 
-	    when "run"
-	    	puts "RUN!"
+	    when "Run"
+	    	puts "RUN FOR YOUR LIFE!"
 	    	#yield
 	    else
 	    	puts "Available commands are attack, block and run. Don't be a dick."
-	    	puts " "
 		end
    	  end
    	  if enemy.health <= 0
    	  	puts "ENEMY DEFEATED. YOU ARE THE KING OF THE NORTH"
-   	  	puts " "
    	  end
    end
 
@@ -64,7 +66,6 @@ class Battle < ActiveRecord::Base
     enemy.health -= rand_attack_num
   	enemy.save
     puts "HERO deals #{rand_attack_num} damage!"
-    sleep(2)
   end
 
   def enemy_attack(story_hero, enemy)
@@ -75,6 +76,7 @@ class Battle < ActiveRecord::Base
     puts "ENEMY deals #{rand_attack_num} damage!"
     puts " "
     sleep(2)
+
   end
 
   def block
