@@ -1,7 +1,7 @@
 require_relative '../config/environment'
-Player.destroy_all
-Battle.destroy_all
-Enemy.destroy_all
+# Player.destroy_all
+# Battle.destroy_all
+# Enemy.destroy_all
 
 
 def run_game
@@ -18,7 +18,7 @@ def story_prologue
   get_name = gets.chomp.to_s.capitalize
 
   story_hero = Player.create(:name => get_name)
-
+  sleep(2)
   puts "Old Wizard: Ahhh, so YOU'RE #{story_hero.name}!"
 
   # puts "Old Wizard: And tell me, #{story_hero.name}, what class are you?"
@@ -27,9 +27,11 @@ def story_prologue
   # story_hero = :race => get_race)
 
   # puts "Old Wizard: Ahhhh, a #{story_hero.race}"
-
+  sleep(2)
   puts "Old Wizard: This land has been overrun by enemies of the Dark Lord. (╬ಠ益ಠ)"
+  sleep(2)
   puts "Old Wizard: We need your help!"
+  sleep(2)
   story_hero
 end
 
@@ -37,7 +39,7 @@ end
 def game_loop(hero)
   game_on = true
   while game_on
-    puts "Old Wizard: OMG! An wild enemy appears!"
+
     puts "Available Commands:"
     puts "-------------------------------------\n"
     puts "Fight"
@@ -47,7 +49,7 @@ def game_loop(hero)
     user_command = gets.chomp.downcase
     case user_command
     when "fight"
-      print "The battle has begun!\n\n"
+      # print "The battle has begun!\n\n"
       hero.enter_battle
     when "inventory"
       #story_hero.inventory

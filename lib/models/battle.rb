@@ -16,19 +16,24 @@ class Battle < ActiveRecord::Base
   #needs a range of attack damage, .sample out of range
   def enter_fight(story_hero, enemy)
     # binding.pry
+    puts "Old Wizard: OMG! An wild enemy appears!"
+    puts " "
+    sleep(2)
 	  while enemy.health > 0
 
 	  	puts "==============BATTLE================="
-	  	puts "Player health: #{story_hero.health}"
 	  	puts "Enemy health: #{enemy.health}"
+	  	puts "Player health: #{story_hero.health}"
 	  	puts "====================================="
 	  	puts " "
+	  	sleep(2)
 	  	puts "Battle Commands:"
 	  	puts "attack"
 	  	puts "block"
 	  	puts "run"
+	  	puts " "
 	  	user_input = gets.chomp
-
+	  	puts " "
 	    case user_input
 
 	    when "attack"
@@ -43,26 +48,33 @@ class Battle < ActiveRecord::Base
 	    	#yield
 	    else
 	    	puts "Available commands are attack, block and run. Don't be a dick."
+	    	puts " "
 		end
    	  end
    	  if enemy.health <= 0
    	  	puts "ENEMY DEFEATED. YOU ARE THE KING OF THE NORTH"
+   	  	puts " "
    	  end
    end
 
 
   def attack(story_hero, enemy)
     range_attack = *(1..story_hero.attack)
-    enemy.health -= range_attack.sample
+    rand_attack_num = range_attack.sample
+    enemy.health -= rand_attack_num
   	enemy.save
-    puts "HERO deals #{range_attack.sample} damage!"
+    puts "HERO deals #{rand_attack_num} damage!"
+    sleep(2)
   end
 
   def enemy_attack(story_hero, enemy)
     range_attack = *(1..enemy.attack)
-  	story_hero.health -= range_attack.sample
+    rand_attack_num = range_attack.sample
+  	story_hero.health -= rand_attack_num
   	story_hero.save
-    puts "ENEMY deals #{range_attack.sample} damage!"
+    puts "ENEMY deals #{rand_attack_num} damage!"
+    puts " "
+    sleep(2)
   end
 
   def block
