@@ -30,12 +30,13 @@ def story_prologue
   story_hero
 end
 
+
 def game_loop(hero)
   game_on = true
   while game_on
     puts "Old Wizard: OMG! An wild enemy appears!"
     puts "Available Commands:"
-    puts "----------------------------------------"
+    puts "-------------------------------------\n"
     puts "Fight"
     puts "Inventory"
     puts "Run"
@@ -43,7 +44,7 @@ def game_loop(hero)
     user_command = gets.chomp.downcase
     case user_command
     when "fight"
-      print "The battle has begun!"
+      print "The battle has begun!\n\n"
       hero.enter_battle
     when "inventory"
       #story_hero.inventory

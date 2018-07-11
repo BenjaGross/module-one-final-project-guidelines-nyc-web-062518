@@ -1,3 +1,7 @@
+old_logger = ActiveRecord::Base.logger
+ActiveRecord::Base.logger = nil
+
+
 class Battle < ActiveRecord::Base
 
 	belongs_to :enemy
@@ -29,7 +33,7 @@ class Battle < ActiveRecord::Base
 
 	    when "attack"
         attack(story_hero, enemy)
-
+        enemy_attack(story_hero, enemy)
 	    when "block"
 	    	puts "BLOCK!"
 	      	#yield block
@@ -38,21 +42,28 @@ class Battle < ActiveRecord::Base
 	    	puts "RUN!"
 	    	#yield
 	    else
-	    	yield "Available commands are attack, block and run. Don't be a dick."
+	    	puts "Available commands are attack, block and run. Don't be a dick."
 		end
+   	  end
+   	  if enemy.health <= 0
+   	  	puts "ENEMY DEFEATED. YOU ARE THE KING OF THE NORTH"
    	  end
    end
 
 
   def attack(story_hero, enemy)
-    puts "deals damage!"
+    puts "HERO deals damage!"
   	enemy.health -= story_hero.attack
   	enemy.save
-    # binding.pry
+  end
+
+  def enemy_attack(story_hero, enemy)
+  	puts "ENEMY deals damage!"
+  	story_hero.health -= enemy.attack
+  	story_hero.save
   end
 
   def block
 
   end
-
 end
