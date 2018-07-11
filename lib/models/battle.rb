@@ -36,20 +36,19 @@ class Battle < ActiveRecord::Base
 	  	# puts "block"
 	  	# puts "run"
 	  	# user_input = gets.chomp
-      user_command = prompt.select("Commands:", %w(Attack Block Run))
+      user_command = prompt.select("Commands:", %w(Attack Use_Item Run))
 
 	    case user_command
 
 	    when "Attack"
         attack(story_hero, enemy)
         enemy_attack(story_hero, enemy)
-	    when "Block"
-	    	puts "BLOCK!"
-	      	#yield block
+	    when "Use_Item"
+	    	puts "I NEED AN INVENOTRY FIRST DUMBASS!"
 
 	    when "Run"
 	    	puts "RUN FOR YOUR LIFE!"
-	    	#yield
+	    	run(story_hero, enemy)
 	    else
 	    	puts "Available commands are attack, block and run. Don't be a dick."
 		end
@@ -76,10 +75,22 @@ class Battle < ActiveRecord::Base
     puts "ENEMY deals #{rand_attack_num} damage!"
     puts " "
     sleep(2)
-
   end
 
-  def block
+  def use_item
+  	
+  end
 
+  def run(story_hero, enemy)
+  	dice = [1,2]
+  	if dice.sample == 2
+  		puts "You ran away successfully!"
+  		sleep(2)
+  		puts " "
+  		game_loop(story_hero)
+  	else 
+  		puts "You are not able to run away and enemy hits yo head"
+  		enemy_attack(story_hero, enemy)
+  	end
   end
 end
