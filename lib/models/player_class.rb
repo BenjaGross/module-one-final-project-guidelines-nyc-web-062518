@@ -5,26 +5,16 @@ class Player < ActiveRecord::Base
     super
   end
 
-#needs a range of attack damage, .sample out of range
-  def enter_fight
-  while enemy.health > 0
-
-    user_input = gets.chomp
-
-    case user_input
-
-    when "attack"
-      yield  attack
-
-    when "block"
-      yield block
-
-    end
-
-  def attack
-    puts "deals damage!"
-  	enemy.health -= 10
+  def get_random_enemy
+    Enemies.order("RAND()").first(1)
   end
+
+
+  def enter_battle
+  	 player_enemey_battle = Battle.new(self, get_random_enemy)
+  end
+
+
 
 has_many :battle
 has_many :enemies, through: :battle
