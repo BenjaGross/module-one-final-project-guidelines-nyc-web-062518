@@ -11,6 +11,7 @@ class Battle < ActiveRecord::Base
 
   #needs a range of attack damage, .sample out of range
   def enter_fight(story_hero, enemy)
+    # binding.pry
 	  while enemy.health > 0
 
 	  	puts "==============BATTLE================="
@@ -22,13 +23,12 @@ class Battle < ActiveRecord::Base
 	  	puts "attack"
 	  	puts "block"
 	  	puts "run"
-
 	  	user_input = gets.chomp
 
 	    case user_input
 
 	    when "attack"
-	    	yield attack
+        attack(story_hero, enemy)
 
 	    when "block"
 	    	puts "BLOCK!"
@@ -44,10 +44,11 @@ class Battle < ActiveRecord::Base
    end
 
 
-  def attack
+  def attack(story_hero, enemy)
     puts "deals damage!"
   	enemy.health -= story_hero.attack
   	enemy.save
+    # binding.pry
   end
 
   def block
