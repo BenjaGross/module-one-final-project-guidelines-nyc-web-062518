@@ -7,6 +7,28 @@ has_many :players
 		"WE GOT HERE!"
 	end
 
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
 # #needs a range of attack damage, .sample out of range
 #   def enter_fight
 #   while enemy.health > 0
@@ -33,4 +55,4 @@ has_many :players
   	
 #   end
 
-end
+

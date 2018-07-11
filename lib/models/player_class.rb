@@ -6,18 +6,18 @@ class Player < ActiveRecord::Base
   end
 
   def get_random_enemy
-    Enemy.order("RANDOM()").first(1)
+    Enemy.order("RANDOM()").first(1)[0]
   end
 
 
   def enter_battle
-  	 player_enemey_battle = Battle.new(self, get_random_enemy)
-
+  	 enemy = get_random_enemy
+  	 player_enemey_battle = Battle.create(player_id: self.id, enemy_id: enemy.id)
   end
 
 
 
-has_many :battle
-has_many :enemies, through: :battle
+has_many :battles
+has_many :enemies, through: :battles
 
 end
