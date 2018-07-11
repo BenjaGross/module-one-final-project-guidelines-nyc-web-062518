@@ -4,6 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :race
       t.integer :health
+      t.integer :attack
     end
   end
 end

@@ -7,3 +7,4 @@ bandit = Enemy.create(name: Faker::Witcher.monster, health: 100, attack: attack_
 thug = Enemy.create(name: Faker::Witcher.monster, health: 100, attack: attack_modifier.sample)
 dr_octopus = Enemy.create(name: Faker::Witcher.monster, health: 100, attack: attack_modifier.sample)
 
+aragorn = Player.create(name: "Aragorn, Rightful King of Gondor", attack: 18)
