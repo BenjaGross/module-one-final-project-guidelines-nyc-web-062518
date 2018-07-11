@@ -1,7 +1,7 @@
 class Battle < ActiveRecord::Base
 
-has_many :enemies
-has_many :players
+belongs_to :enemy
+belongs_to :player
 
 	def battle_field
 		"WE GOT HERE!"
@@ -27,7 +27,7 @@ end
 
 
 
-	
+
 
 # #needs a range of attack damage, .sample out of range
 #   def enter_fight
@@ -52,7 +52,5 @@ end
 #   end
 
 #   def block
-  	
+
 #   end
-
-
