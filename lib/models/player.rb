@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
 
   def initialize(args = {})
     args[:health] ||= 100
-    args[:attack] ||= 5
+    args[:attack] ||= 10
     super
   end
 

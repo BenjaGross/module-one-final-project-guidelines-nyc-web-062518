@@ -1,4 +1,7 @@
 require_relative '../config/environment'
+Player.destroy_all
+Battle.destroy_all
+Enemy.destroy_all
 
 
 def run_game
@@ -40,7 +43,7 @@ def game_loop(hero)
     puts "Fight"
     puts "Inventory"
     puts "Run"
-    
+
     user_command = gets.chomp.downcase
     case user_command
     when "fight"

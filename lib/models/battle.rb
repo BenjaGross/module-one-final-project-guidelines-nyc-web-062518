@@ -52,15 +52,17 @@ class Battle < ActiveRecord::Base
 
 
   def attack(story_hero, enemy)
-    puts "HERO deals damage!"
-  	enemy.health -= story_hero.attack
+    range_attack = *(1..story_hero.attack)
+    enemy.health -= range_attack.sample
   	enemy.save
+    puts "HERO deals #{range_attack.sample} damage!"
   end
 
   def enemy_attack(story_hero, enemy)
-  	puts "ENEMY deals damage!"
-  	story_hero.health -= enemy.attack
+    range_attack = *(1..enemy.attack)
+  	story_hero.health -= range_attack.sample
   	story_hero.save
+    puts "ENEMY deals #{range_attack.sample} damage!"
   end
 
   def block
