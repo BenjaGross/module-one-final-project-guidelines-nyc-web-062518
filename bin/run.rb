@@ -11,6 +11,25 @@ end
 
 
 def story_prologue
+
+  # Loading bar
+  spinner = TTY::Spinner.new("[:spinner] Connecting to database ...", format: :bouncing)
+  spinner.auto_spin # Automatic animation with default interval
+  sleep(3) # Perform task
+  spinner.stop('Done!') # Stop animation
+  spinner = TTY::Spinner.new("[:spinner] Adding kittens ...", format: :bouncing)
+  spinner.auto_spin # Automatic animation with default interval
+  sleep(3)
+  spinner.stop('Done!')
+  spinner = TTY::Spinner.new("[:spinner] Adding memes ...", format: :bouncing)
+  spinner.auto_spin # Automatic animation with default interval
+  sleep(3)
+  spinner.stop('Done!')
+  spinner = TTY::Spinner.new("[:spinner] Opening world ...", format: :bouncing)
+  spinner.auto_spin # Automatic animation with default interval
+  sleep(2)
+  spinner.stop('Done!')
+
   fake_region = Faker::ElderScrolls.region
 
   puts "Old Wizard: Welcome to #{fake_region}! Tell me, Young-Adventurer, WHAT is your name!?"

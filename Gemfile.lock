@@ -60,6 +60,8 @@ GEM
       tty-screen (~> 0.6.4)
       wisper (~> 2.0.0)
     tty-screen (0.6.4)
+    tty-spinner (0.8.0)
+      tty-cursor (>= 0.5.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     wisper (2.0.0)
@@ -74,6 +76,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   tty-prompt
+  tty-spinner
 
 BUNDLED WITH
    1.16.2
