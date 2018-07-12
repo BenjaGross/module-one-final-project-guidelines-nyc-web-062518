@@ -16,7 +16,7 @@ class Battle < ActiveRecord::Base
   #needs a range of attack damage, .sample out of range
   def enter_fight(story_hero, enemy)
     # binding.pry
-    puts "Old Wizard: OMG! A wild enemy appears"
+    puts "Old Wizard: I KNOW this enemy! His name is #{enemy.name}."
     puts " "
     sleep(2)
 
@@ -24,18 +24,14 @@ class Battle < ActiveRecord::Base
 	  while enemy.health > 0
 
 
-	  	puts "==============BATTLE================="
-      puts "Enemy health: #{enemy.health}"
+	  	puts "=============.+BATTLE+=============="
+      puts "#{story_hero.name} VS #{enemy.name}"
 	  	puts "Player health: #{story_hero.health}"
+      puts "Enemy health: #{enemy.health}"
 	  	puts "====================================="
 	  	puts " "
       sleep(2)
 
-	  	# puts "Battle Commands:"
-	  	# puts "attack"
-	  	# puts "block"
-	  	# puts "run"
-	  	# user_input = gets.chomp
       user_command = prompt.select("Commands:", %w(Attack Block Run))
 
 	    case user_command
@@ -55,7 +51,7 @@ class Battle < ActiveRecord::Base
 		end
    	  end
    	  if enemy.health <= 0
-   	  	puts "ENEMY DEFEATED. YOU ARE THE KING OF THE NORTH"
+   	  	puts "#{enemy.name} DEFEATED!"
    	  end
    end
 
