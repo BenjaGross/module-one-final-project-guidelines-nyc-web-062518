@@ -1,86 +1,94 @@
 require_relative '../config/environment'
+# Loading bar
+spinner = TTY::Spinner.new("[:spinner] Connecting to database ...", format: :bouncing)
+spinner.auto_spin # Automatic animation with default interval
+sleep(3) # Perform task
+spinner.stop('Done!') # Stop animation
+spinner = TTY::Spinner.new("[:spinner] Adding kittens ...", format: :bouncing)
+spinner.auto_spin # Automatic animation with default interval
+sleep(3)
+spinner.stop('Done!')
+spinner = TTY::Spinner.new("[:spinner] Adding memes ...", format: :bouncing)
+spinner.auto_spin # Automatic animation with default interval
+sleep(3)
+spinner.stop('Done!')
+spinner = TTY::Spinner.new("[:spinner] Opening world ...", format: :bouncing)
+spinner.auto_spin # Automatic animation with default interval
+sleep(2)
+spinner.stop('Done!')
 # Player.destroy_all
 # Battle.destroy_all
 # Enemy.destroy_all
 
 
 def run_game
+font = TTY::Font.new(:doom)
+puts "                                    ... Welcome to ...                                    "
+puts font.write("NOT Final Fantasy")
+puts "                        A super simple CLI Adventure by Sean & Tony\n\n                          "
+  sleep(3)
   game_loop(story_prologue)
-
 end
-
 
 def story_prologue
 
-  # Loading bar
-  spinner = TTY::Spinner.new("[:spinner] Connecting to database ...", format: :bouncing)
-  spinner.auto_spin # Automatic animation with default interval
-  sleep(3) # Perform task
-  spinner.stop('Done!') # Stop animation
-  spinner = TTY::Spinner.new("[:spinner] Adding kittens ...", format: :bouncing)
-  spinner.auto_spin # Automatic animation with default interval
-  sleep(3)
-  spinner.stop('Done!')
-  spinner = TTY::Spinner.new("[:spinner] Adding memes ...", format: :bouncing)
-  spinner.auto_spin # Automatic animation with default interval
-  sleep(3)
-  spinner.stop('Done!')
-  spinner = TTY::Spinner.new("[:spinner] Opening world ...", format: :bouncing)
-  spinner.auto_spin # Automatic animation with default interval
-  sleep(2)
-  spinner.stop('Done!')
+  pastel = Pastel.new
 
   fake_region = Faker::ElderScrolls.region
 
-  puts "Old Wizard: Welcome to #{fake_region}! Tell me, Young-Adventurer, WHAT is your name!?"
+  puts "OLD WIZARD: Welcome, Adventurer, to the land of  #{fake_region}. These are DARK TIMES, to be sure. The gates of HELL itself have opened and the land has become INFESTED with ENEMIES of the LIGHT."
+  puts " "
+  sleep(2)
+
+  puts "OLD WIZARD: We are FOREVER indebted to you for agreeing to rid these ONCE fair lands of the EVIL that resides within them. Please tell me, what should we call you?"
+  puts " "
 
   get_name = gets.chomp.to_s.capitalize
 
   story_hero = Player.create(:name => get_name)
+
+  puts " "
   sleep(2)
-  puts "Old Wizard: Ahhh, so YOU'RE #{story_hero.name}!"
+  puts "OLD WIZARD: *GASP*"
+  puts " "
+
   sleep(2)
+  puts pastel.yellow("#{story_hero.name}!")
+  puts " "
 
-  # puts "Old Wizard: And tell me, #{story_hero.name}, what class are you?"
-  # get_race = gets.chomp.to_s.capitalize
-
-  # story_hero = :race => get_race)
-
-  # puts "Old Wizard: Ahhhh, a #{story_hero.race}"
-
-  puts "Old Wizard: This land has been overrun by enemies of the Dark Lord. (╬ಠ益ಠ)"
   sleep(2)
 
-  puts "Old Wizard: We need your help!"
+  puts "The LEGENDS are TRUE! The HERO OF OLD is REBORN!"
+  puts " "
+
+  sleep(2)
+  puts "Please, #{story_hero.name}, You must HELP US!"
+  puts " "
+
   sleep(2)
 
+  #method returns story hero
   story_hero
-end
+
+  end
 
 
-def game_loop(hero)
+def game_loop(story_hero)
   game_on = true
   prompt = TTY::Prompt.new
+
   while game_on
-    puts "Old Wizard: OMG! An wild enemy appears!"
-    # puts "Available Commands:"
-    puts "-------------------------------------\n"
-    # puts "Fight"
-    # puts "Inventory"
-    # puts "Run"
+
     user_command = prompt.select("Commands:", %w(Fight Inventory Exit))
 
-
-    # user_command = gets.chomp.downcase
     case user_command
-    when "Fight"
-      print "The battle has begun!\n\n"
-      hero.enter_battle
-    when "Inventory"
-      #story_hero.inventory
-      print "Inventory Empty :-("
-    when "Exit"
-      game_on = false
+      when "Fight"
+        story_hero.enter_battle
+      when "Inventory"
+        puts "Inventory Empty :-(. We have not built that function yet"
+      when "Exit"
+        puts "Thanks for playing our game! Bye Forver."
+        game_on = false
     end
 
   end

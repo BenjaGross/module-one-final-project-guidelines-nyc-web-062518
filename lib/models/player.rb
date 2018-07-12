@@ -3,6 +3,9 @@ ActiveRecord::Base.logger = nil
 
 class Player < ActiveRecord::Base
 
+  has_many :battles
+  has_many :enemies, through: :battles
+
   def initialize(args = {})
     args[:health] ||= 100
     args[:attack] ||= 10
@@ -17,16 +20,10 @@ class Player < ActiveRecord::Base
       # win_game
   end
 
-
   def enter_battle
   	 enemy = get_random_enemy
   	 player_enemy_battle = Battle.create(player_id: self.id, enemy_id: enemy.id)
      player_enemy_battle.battlefield
   end
-
-
-
-has_many :battles
-has_many :enemies, through: :battles
-
+  
 end
