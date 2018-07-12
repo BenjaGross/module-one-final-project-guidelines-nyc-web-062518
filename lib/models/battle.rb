@@ -17,14 +17,14 @@ class Battle < ActiveRecord::Base
   def enter_fight(story_hero, enemy)
     # binding.pry
 		puts "OLD WIZARD: By the MAKER! A FIEND approaches this very MOMENT!!"
-		sleep(2)
+		# sleep(2)
 		puts " "
 		puts "    (╬ಠ益ಠ) <- Evil Demon: #{enemy.name}    "
 		puts " "
 		puts "-------------------------------------\n"
     puts "Old Wizard: I KNOW this enemy! His name is #{enemy.name}."
     puts " "
-    sleep(2)
+    # sleep(2)
 
     prompt = TTY::Prompt.new
 	  while enemy.health > 0
@@ -35,7 +35,7 @@ class Battle < ActiveRecord::Base
       puts "     #{enemy.name} health: #{enemy.health}"
 	  	puts "====================================="
 	  	puts " "
-      sleep(2)
+      # sleep(2)
 
       user_command = prompt.select("Commands:", %w(Attack Block Run))
 
@@ -53,9 +53,16 @@ class Battle < ActiveRecord::Base
 	    else
 	    	puts "Available commands are attack, block and run. Don't be a dick."
 		end
-   	  end
-   	  if enemy.health <= 0
-   	  	puts "#{enemy.name} DEFEATED!"
+
+
+		if enemy.health <= 0 
+   	  		puts "You defeated #{enemy.name}!"
+   	  	# sleep(1)
+   	  	elsif story_hero.health <= 0
+	   	  	puts "The legends were false. You are not the hero tales spoke of."
+	   	  	puts "GAME OVER!"
+	   	  	exit
+   	  	end
    	  end
    end
 
@@ -66,7 +73,7 @@ class Battle < ActiveRecord::Base
     enemy.health -= rand_attack_num
   	enemy.save
     puts "HERO deals #{rand_attack_num} damage!"
-		sleep(1)
+		# sleep(1)
   end
 
   def enemy_attack(story_hero, enemy)
@@ -76,7 +83,7 @@ class Battle < ActiveRecord::Base
   	story_hero.save
     puts "ENEMY deals #{rand_attack_num} damage!"
     puts " "
-    sleep(2)
+    # sleep(2)
   end
 
   def use_item
@@ -87,7 +94,7 @@ class Battle < ActiveRecord::Base
   	dice = [1,2]
   	if dice.sample == 2
   		puts "You ran away successfully!"
-  		sleep(2)
+  		# sleep(2)
   		puts " "
   		game_loop(story_hero)
   	else
