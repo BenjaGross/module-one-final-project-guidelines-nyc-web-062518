@@ -15,10 +15,10 @@ class Player < ActiveRecord::Base
   def get_random_enemy
     # Enemy.order("RANDOM()").first(1)[0]
     alive_enemy = Enemy.where("health > 0")
-    alive_enemy.order("RANDOM()").first(1)[0]
     if alive_enemy.length == 0
       win_game
     end
+    alive_enemy.order("RANDOM()").first(1)[0]
   end
 
   def enter_battle
@@ -26,7 +26,7 @@ class Player < ActiveRecord::Base
   	 player_enemy_battle = Battle.create(player_id: self.id, enemy_id: enemy.id)
      player_enemy_battle.battlefield
   end
-  
+
   def win_game
     puts "YOU HAVE DEFEATED ALL OF THE ENEMIES! YOU ARE THE HERO THE TALES SPOKE OF!! "
     puts "                          GAME OVER."
