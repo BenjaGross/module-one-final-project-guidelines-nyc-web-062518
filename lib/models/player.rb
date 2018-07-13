@@ -32,6 +32,7 @@ class Player < ActiveRecord::Base
     puts "                          GAME OVER."
     puts "THANKS FOR PLAYING. LOVE TONY AND SEAN"
     #ASCII cat
+    destroy_all
     exit
   end
 

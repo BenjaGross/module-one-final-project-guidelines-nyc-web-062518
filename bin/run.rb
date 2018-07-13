@@ -27,6 +27,7 @@ puts " "
 
 
 def run_game
+  seed_data
 font = TTY::Font.new(:doom)
 puts "                         ... Welcome to ...                                    "
 puts font.write("                        NOT")
@@ -94,6 +95,7 @@ def game_loop(story_hero)
         puts "Inventory Empty :-(. We have not built that function yet"
       when "Exit"
         puts "Thanks for playing our game! Bye Forver."
+        destroy_all
         exit
     end
 
@@ -101,7 +103,10 @@ def game_loop(story_hero)
 end
 
 
-
+  def destroy_all
+    Enemy.destroy_all
+    Battle.destroy_all
+  end
 
 
 

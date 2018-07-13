@@ -65,6 +65,7 @@ class Battle < ActiveRecord::Base
    	  	elsif story_hero.health <= 0
 	   	  	puts "The legends were false. You are not the hero tales spoke of."
 	   	  	puts "GAME OVER!"
+					destroy_all
 	   	  	exit
    	  	end
    	  end
