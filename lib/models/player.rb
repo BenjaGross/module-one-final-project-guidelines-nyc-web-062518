@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
 
   def initialize(args = {})
     args[:health] ||= 100
-    args[:attack] ||= 10
+    args[:attack] ||= 20
     super
   end
 

@@ -72,7 +72,7 @@ class Battle < ActiveRecord::Base
 
 
   def attack(story_hero, enemy)
-    range_attack = *(1..story_hero.attack)
+    range_attack = *(10..story_hero.attack)
     rand_attack_num = range_attack.sample
     enemy.health -= rand_attack_num
   	enemy.save
@@ -81,7 +81,7 @@ class Battle < ActiveRecord::Base
   end
 
   def enemy_attack(story_hero, enemy)
-    range_attack = *(1..enemy.attack)
+    range_attack = *(10..enemy.attack)
     rand_attack_num = range_attack.sample
   	story_hero.health -= rand_attack_num
   	story_hero.save

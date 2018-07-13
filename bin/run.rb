@@ -1,21 +1,23 @@
 require_relative '../config/environment'
 # Loading bar
+pastel = Pastel.new
+
 spinner = TTY::Spinner.new("[:spinner] Connecting to database ...", format: :bouncing)
 spinner.auto_spin # Automatic animation with default interval
 sleep(3) # Perform task
-spinner.stop('Done!') # Stop animation
+spinner.stop(pastel.green('Done!')) # Stop animation
 spinner = TTY::Spinner.new("[:spinner] Adding kittens ...", format: :bouncing)
 spinner.auto_spin # Automatic animation with default interval
 sleep(3)
-spinner.stop('Done!')
+spinner.stop(pastel.green('Done!'))
 spinner = TTY::Spinner.new("[:spinner] Adding memes ...", format: :bouncing)
 spinner.auto_spin # Automatic animation with default interval
 sleep(3)
-spinner.stop('Done!')
+spinner.stop(pastel.green('Done!'))
 spinner = TTY::Spinner.new("[:spinner] Opening world ...", format: :bouncing)
 spinner.auto_spin # Automatic animation with default interval
 sleep(2)
-spinner.stop('Done!')
+spinner.stop(pastel.green('Done!'))
 puts " "
 puts " "
 puts " "
@@ -57,7 +59,7 @@ def story_prologue
   puts " "
 
   sleep(2)
-  puts pastel.yellow("#{story_hero.name}!")
+  puts pastel.blue("#{story_hero.name}!")
   puts " "
 
   sleep(2)
