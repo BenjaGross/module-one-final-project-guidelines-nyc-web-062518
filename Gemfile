@@ -10,3 +10,4 @@ gem "tty-prompt"
 gem 'tty-spinner'
 gem 'tty-font'
 gem 'pastel'
+gem 'rspec'
